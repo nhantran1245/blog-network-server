@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 //import routes
 const taskRoutes = require('./modules/examples/routes/task');
 const authRoutes = require('./modules/auth/routes/auth');
+const imageRoutes = require('./modules/image/imageUploadRooute');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/TestDb');
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 
 taskRoutes(app);
 authRoutes(app);
+imageRoutes(app);
 
 app.listen(port);
 

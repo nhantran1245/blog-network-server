@@ -63,7 +63,6 @@ exports.register = (req, res) => {
         password,
         firstName,
         lastName,
-        birthDate,
     } = req.body;
     if (!username || username.length < 8 || username.length > 24) {
         res.status(400).json({
@@ -90,7 +89,6 @@ exports.register = (req, res) => {
             } else {
                 const userPayload = new user(req.body);
                 userPayload.username = username.toLowerCase();
-                userPayload.birthDate = new Date(birthDate);
                 const salt = bcrypt.genSaltSync(parseInt(process.env.SALT_ROUNDS));
                 const hashedPassword = bcrypt.hashSync(password, salt);
                 userPayload.password = hashedPassword;
