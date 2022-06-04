@@ -8,9 +8,10 @@ const port = process.env.PORT || 3001;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 //import routes
-const taskRoutes = require('./modules/examples/routes/task');
-const authRoutes = require('./modules/auth/routes/auth');
-const imageRoutes = require('./modules/image/imageUploadRooute');
+const authRoutes = require('./modules/auth/routes');
+const imageRoutes = require('./modules/image/imageUploadRoute');
+const userRoutes = require('./modules/user/routes');
+const blogRoutes = require('./modules/blog/routes');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/TestDb');
@@ -19,9 +20,10 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-taskRoutes(app);
 authRoutes(app);
 imageRoutes(app);
+userRoutes(app);
+blogRoutes(app);
 
 app.listen(port);
 
