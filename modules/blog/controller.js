@@ -25,7 +25,7 @@ exports.getBlog = (req, res) => {
     blogModel.findById(blogId)
     .populate("createdBy")
     .populate("likes.liked_by")
-    .populate("comments.comment ed_by")
+    .populate("comments.commented_by")
     .exec((err, blog) => {
         if (err || !blog) {
             res.status(404).json({
